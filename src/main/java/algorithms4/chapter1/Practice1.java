@@ -12,4 +12,5 @@ public class Practice1 {
 		int r = p % q;
 		return gcd(q,r);
 	}
+
 }

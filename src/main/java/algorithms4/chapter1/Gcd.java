@@ -1,6 +1,6 @@
 package algorithms4.chapter1;
 
-public class Practice1 {
+public class Gcd {
 	/**
 	 * 欧几里得算法 计算两个非负整数的最大公约数
 	 * @param p

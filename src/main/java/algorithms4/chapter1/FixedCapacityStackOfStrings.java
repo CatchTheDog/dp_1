@@ -1,5 +1,6 @@
 package algorithms4.chapter1;
 
+import algorithms4.utils.StdIn;
 import algorithms4.utils.StdOut;
 
 /**
@@ -29,18 +30,13 @@ public class FixedCapacityStackOfStrings {
 	}
 
 	public static void main(String [] args){
-		FixedCapacityStackOfStrings stack = new FixedCapacityStackOfStrings(5);
-		StdOut.println(stack.pop());
-		stack.push("1");
-		StdOut.println(stack.pop());
-		StdOut.println(stack.pop());
-		stack.push("2");
-		stack.push("3");
-		stack.push("4");
-		stack.push("5");
-		stack.push("6");
-		stack.push("7");
-		StdOut.println(stack.pop());
-		StdOut.println(stack.pop());
+		FixedCapacityStackOfStrings stack = new FixedCapacityStackOfStrings(100);
+		while (!StdIn.isEmpty()) {
+			String item = StdIn.readString();
+			if (!item.equals("-")) {
+				stack.push(item);
+			} else if (!stack.isEmpty()) StdOut.println(stack.pop() + " ");
+		}
+		StdOut.println("(" + stack.size() + " left on stack)");
 	}
 }

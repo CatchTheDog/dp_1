@@ -1,16 +1,13 @@
 package algorithms4.chapter1;
 
-import algorithms4.utils.StdIn;
-import algorithms4.utils.StdOut;
-
 import java.util.Iterator;
 
 /**
- * 堆栈（链表实现）
+ * 背包
  *
  * @param <Item>
  */
-public class Stack<Item> implements Iterable<Item> {
+public class Bag<Item> {
 	private Node first;
 	private int N;
 
@@ -23,7 +20,7 @@ public class Stack<Item> implements Iterable<Item> {
 		return N;
 	}
 
-	public void push(Item item) {
+	public void add(Item item) {
 		Node oldFirst = first;
 		first = new Node();
 		first.item = item;
@@ -31,12 +28,6 @@ public class Stack<Item> implements Iterable<Item> {
 		N++;
 	}
 
-	public Item pop() {
-		Item item = first.item;
-		first = first.next;
-		N--;
-		return item;
-	}
 
 	public Iterator<Item> iterator() {
 		return new ListIterator();
@@ -63,16 +54,5 @@ public class Stack<Item> implements Iterable<Item> {
 		public void remove() {
 
 		}
-	}
-
-	public static void main(String[] args) {
-		Stack<String> s = new Stack<String>();
-		while (!StdIn.isEmpty()) {
-			String item = StdIn.readString();
-			if (!item.equals("-")) {
-				s.push(item);
-			} else if (!s.isEmpty()) StdOut.println(s.pop() + " ");
-		}
-		StdOut.println("(" + s.size() + "left on stack )");
 	}
 }

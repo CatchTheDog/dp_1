@@ -1,9 +1,5 @@
 package algorithms4.chapter2;
 
-import algorithms4.utils.In;
-import algorithms4.utils.StdOut;
-
-import java.util.Date;
 import java.util.Random;
 
 /**
@@ -23,7 +19,6 @@ public class Insertion extends Example{
         for(int i = 0;i<a.length-1;i++){
             for(int j = i+1;j<a.length;j++){
                 int n = a[j];
-                //在前面子串中寻找a[j]的位置，并插入
                 int position = j;
                 for(int k=0;k<j;k++){
                     if(less(a[j],a[k])) {
@@ -31,7 +26,6 @@ public class Insertion extends Example{
                         break;
                     }
                 }
-                //将k 到 i(包含a[i])的每个元素向后移动一位，将a[j]放入k处
                 for(int m = j;m>position;m--){
                     a[m] = a[m-1];
                 }

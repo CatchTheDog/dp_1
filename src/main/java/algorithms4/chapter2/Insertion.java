@@ -3,109 +3,52 @@ package algorithms4.chapter2;
 import algorithms4.utils.In;
 import algorithms4.utils.StdOut;
 
+import java.util.Date;
+import java.util.Random;
+
 /**
- * 插入排序
+ * 插入排序：将每一张牌插入到其他已经有序的序列的适当位置。
  *
  */
-public class Insertion {
+public class Insertion extends Example{
     /**
-     * 排序
+     * 插入排序
      * @param a
      */
-    public static void sort(Comparable [] a){
-        int N = a.length;
-        for(int i=1;i<N;i++){
-            for(int j=i;j>0&&less(a[j],a[j-1]);j--){
-                exch(a,j,j-1);
+    public void sort(Comparable[] a) {
+
+    }
+
+    public void insertion_x(Integer a []){
+        for(int i = 0;i<a.length-1;i++){
+            for(int j = i+1;j<a.length;j++){
+                int n = a[j];
+                //在前面子串中寻找a[j]的位置，并插入
+                int position = j;
+                for(int k=0;k<j;k++){
+                    if(less(a[j],a[k])) {
+                        position = k;
+                        break;
+                    }
+                }
+                //将k 到 i(包含a[i])的每个元素向后移动一位，将a[j]放入k处
+                for(int m = j;m>position;m--){
+                    a[m] = a[m-1];
+                }
+                a[position] = n;
             }
         }
     }
 
-    /**
-     * 排序
-     * @param a
-     */
-    /*public static void sort_1(Comparable [] a){
-        int N = a.length;
-        for(int i=1;i<N;i++){
-            int j = i;
-            while(j>0){
-               if(less(a[j],a[j-1])){
-                   exch(a,j,j-1);
-               }else{
-                   for(int k=j;k<N&&less(a[k],a[k-1]);k++){
-                       exch(a,k,k+1);
-                   }
-               }
-              j--;
-            }
+    public static void main(String []args){
+        Insertion insertion = new Insertion();
+        Integer [] a = new Integer [100];
+        for(int i = 0;i<100;i++){
+            Random random = new Random();
+            a[i] = random.nextInt(100);
         }
-    }*/
-
-    /**
-     * 元素比较
-     * @param v
-     * @param w
-     * @return
-     */
-    private static boolean less(Comparable v,Comparable w){
-        return v.compareTo(w) < 0 ;
-    }
-
-    /**
-     * 将元素交换位置
-     * @param a
-     * @param i
-     * @param j
-     */
-    private static void exch(Comparable [] a,int i,int j){
-        Comparable t = a[i];
-        a[i] = a[j];
-        a[j]  = t;
-    }
-
-    /**
-     * 打印字符串
-     * @param a
-     */
-    private static void show(Comparable [] a){
-        for(int i = 0;i<a.length;i++){
-            StdOut.println(a[i] + " ");
-        }
-        StdOut.println();
-    }
-
-    private static void show_1(Comparable [] a){
-        for(int i = 0;i<a.length;i++){
-            StdOut.println(a[i] + " ");
-        }
-        StdOut.println();
-    }
-
-    /**
-     * 检测集合是否有序                    2
-     * @param a
-     * @return
-     */
-    private static boolean isSorted(Comparable [] a){
-        for(int i =0;i<a.length;i++){
-            if(less(a[i],a[i-1])) return false;
-        }
-        return true;
-    }
-
-    public static Integer[] getInt(String [] a){
-        Integer [] b = new Integer [a.length];
-        for(int i =0;i<a.length;i++){
-            b[i] = Integer.valueOf(a[i]);
-        }
-        return b;
-    }
-
-    public static void main(String [] args){
-        Integer [] a = getInt(In.readStrings());
-        sort(a);
-        assert(isSorted(a));
-        show(a);
+        for(int x : a) System.out.println(x);
+        insertion.insertion_x(a);
+        insertion.show(a);
     }
 }
